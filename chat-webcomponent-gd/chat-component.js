@@ -100,7 +100,7 @@ class ChatInterface extends HTMLElement {
         this.shadowRoot.innerHTML = `
             <style>
                 @import url('../reset.css');
-                @import url('../styles.css');
+                @import url('styles.css');
             </style>
             <div id="chat-box">
                 <div id="chat-box-header-container">
