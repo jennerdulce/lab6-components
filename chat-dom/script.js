@@ -11,6 +11,20 @@
 
         function appendMessageToChat(message, sender) {
             log("Appending Message to Chatbox")
+            let newMessageElement = document.createElement('li');
+            if (sender === 'user') {
+                newMessageElement.classList.add('user-message');
+                newMessageElement.innerHTML = message;
+                messageContainer.appendChild(newMessageElement);
+            } else {
+                newMessageElement.classList.add('ai-output');
+                let botResponse = getBotResponse(message);
+                newMessageElement.innerHTML = botResponse;
+                messageContainer.appendChild(newMessageElement);
+            }
+
+            // Scroll to the bottom of the chat
+            messageContainer.scrollTop = messageContainer.scrollHeight;
         }
 
         function processUserMessage(msg) {
