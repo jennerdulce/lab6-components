@@ -26,7 +26,20 @@ class SimpleChat extends HTMLElement {
     }
 
     updateSendButtonState() {
+        const userInput = this.shadowRoot.getElementById('user-input');
+        const sendBtn = this.shadowRoot.getElementById('send-btn');
 
+        if (userInput.value.trim() !== '') {
+            if (!sendBtn.classList.contains('hasContent')) {
+                this.log('added hasContent');
+                sendBtn.classList.add('hasContent');
+            }
+        } else {
+            if (sendBtn.classList.contains('hasContent')) {
+                this.log('removed hasContent');
+                sendBtn.classList.remove('hasContent');
+            }
+        }
     }
 
     setupEventListeners() {
