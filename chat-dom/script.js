@@ -38,8 +38,24 @@ function processUserMessage(msg) {
     }
 }
 
+// Function to check input and update button state
+function updateSendButtonState() {
+    if (userInput.value.trim() !== '') {
+        if (!sendBtn.classList.contains('hasContent')) {
+            log('added hasContent');
+            sendBtn.classList.add('hasContent');
+        }
+    } else {
+        if (sendBtn.classList.contains('hasContent')) {
+            log('removed hasContent');
+            sendBtn.classList.remove('hasContent');
+        }
+    }
+}
+
 function init() {
     log("Loading app...");
+    updateSendButtonState();
 
     sendBtn.addEventListener('click', () => {
         log("Send button clicked");
@@ -52,6 +68,17 @@ function init() {
             alert("Please enter a valid message.");
         }
 
+    });
+
+    // Listen for input changes (typing, pasting, deleting)
+    userInput.addEventListener('input', updateSendButtonState);
+
+    // Also check on initial load
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendBtn.click();
+        }
     });
 }
 
