@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <simple-chat>
+        <div id="chat-box">
+            <div id="chat-box-header-container">
+                <h3 id="chat-box-title">Chat Assistant</h3>
+                <h4 id="chat-box-desc">Web Component: Interactive Progressive Enhancement</h4>
+            </div>
+            <ul id="message-container">
+                <li class="bot-output">
+                    <div class="chat-message-content">
+                        <p>Hello! I'm here to chat with you. How can I help you</p>
+                    </div>
+                </li>
+            </ul>
+            <div id="user-input-container">
+                <textarea name="" id="user-input" placeholder="Type a message..."></textarea>
+                <button id="send-btn" type="submit">Send</button>
+            </div>
+            <div id="chat-box-footer">
+                <!-- <p id="chat-box-footer-text">Chat Prototype - Jenner Dulce &copy; 2024</p> -->
+                <p id="chat-box-footer-text">
+                    <span id="info-icon">&#8505;</span>This is a static HTML/CSS demonstration. The input is disabled.
+                    See
+                    other
+                    approaches for interactive versions.
+                </p>
+            </div>
+        </div>
+    </simple-chat>
+    
+    <script src="chat-component.js"></script>
+</body>
+</html>
