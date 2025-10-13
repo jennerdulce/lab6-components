@@ -14,7 +14,15 @@ class SimpleChat extends HTMLElement {
     }
 
     processUserMessage(msg) {
+        this.log("Processing user message...");
+        let processedUserMessage = msg.trim();
 
+        if (processedUserMessage !== "") {
+            return processedUserMessage;
+
+        } else {
+            return false;
+        }
     }
 
     updateSendButtonState() {
