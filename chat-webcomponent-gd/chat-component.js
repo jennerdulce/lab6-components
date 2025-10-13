@@ -105,7 +105,7 @@ class ChatInterface extends HTMLElement {
             <div id="chat-box">
                 <div id="chat-box-header-container">
                     <h3 id="chat-box-title">Chat Assistant</h3>
-                    <h4 id="chat-box-desc">Web Component: Interactive Progressive Enhancement</h4>
+                    <h4 id="chat-box-desc">Web Component: Interactive Graceful Degredation and Showbox Encapsulation</h4>
                 </div>
                 <ul id="message-container">
                     <li class="bot-output">
