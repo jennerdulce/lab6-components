@@ -1,6 +1,7 @@
 class SimpleChat extends HTMLElement {
     constructor() {
         super();
+        this.DEBUG = false;
     }
 
     connectedCallback() {
@@ -9,7 +10,7 @@ class SimpleChat extends HTMLElement {
     }
 
     log(msg) {
-
+        if (this.DEBUG) console.log(msg);
     }
 
     processUserMessage(msg) {
