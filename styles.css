@@ -8,6 +8,10 @@
     --background-dark: #dcdcdc;
 }
 
+.hasContent {
+    background-color: var(--primary-color);
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -119,9 +123,19 @@ body {
     background-color: rgb(179, 179, 179);
     color: var(--text-light);
     font-size: 1em;
-    cursor: pointer;
     box-sizing: border-box;
     text-align: center;
+    cursor: not-allowed;
+    transition: background-color 0.3s ease;
+}
+
+#send-btn.hasContent {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+#send-btn.hasContent:hover {
+    background-color: #2563eb;
 }
 
 #chat-box-footer {
