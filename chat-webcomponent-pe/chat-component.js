@@ -26,8 +26,8 @@ class SimpleChat extends HTMLElement {
     }
 
     updateSendButtonState() {
-        const userInput = this.shadowRoot.getElementById('user-input');
-        const sendBtn = this.shadowRoot.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
 
         if (userInput.value.trim() !== '') {
             if (!sendBtn.classList.contains('hasContent')) {
@@ -43,11 +43,54 @@ class SimpleChat extends HTMLElement {
     }
 
     setupEventListeners() {
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
 
+        sendBtn.addEventListener('click', () => {
+            this.log("Send button clicked");
+            let userMessage = this.processUserMessage(userInput.value);
+            if (userMessage) {
+                this.appendMessageToChat(userMessage, 'user');
+                userInput.value = '';
+                this.appendMessageToChat(userMessage, 'bot');
+            } else {
+                alert("Please enter a valid message.");
+            }
+            this.updateSendButtonState(); // Update button state after sending
+        });
+
+        // Listen for input changes (typing, pasting, deleting)
+        userInput.addEventListener('input', () => this.updateSendButtonState());
+
+        // Handle Enter key press
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendBtn.click();
+            }
+        });
     }
 
     appendMessageToChat(message, sender) {
+        const messageContainer = document.getElementById('message-container');
 
+        this.log("Appending Message to Chatbox")
+        let newMessageElement = document.createElement('li');
+        if (sender === 'user') {
+            newMessageElement.classList.add('user-message');
+            newMessageElement.innerHTML = message;
+            messageContainer.appendChild(newMessageElement);
+
+        } else {
+
+            newMessageElement.classList.add('bot-output');
+            let botResponse = this.getBotResponse(message);
+            newMessageElement.innerHTML = botResponse;
+            messageContainer.appendChild(newMessageElement);
+        }
+
+        // Scroll to the bottom of the chat
+        messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
     getBotResponse(message) {
