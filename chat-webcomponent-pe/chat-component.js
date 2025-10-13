@@ -4,27 +4,28 @@ class SimpleChat extends HTMLElement {
     }
 
     connectedCallback() {
-       
+        this.updateSendButtonState();
+        this.setupEventListeners();
     }
 
     log(msg) {
-       
+
     }
 
     processUserMessage(msg) {
-        
+
     }
 
     updateSendButtonState() {
-        
+
     }
 
     setupEventListeners() {
-       
+
     }
 
     appendMessageToChat(message, sender) {
-        
+
     }
 
     getBotResponse(message) {
