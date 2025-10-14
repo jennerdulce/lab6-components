@@ -80,6 +80,11 @@ body {
     font-size: .8em;
     line-height: 1.6;
     gap: 1em;
+    transition: box-shadow 0.3s ease;
+}
+
+.example:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
 }
 
 .approach-number {
