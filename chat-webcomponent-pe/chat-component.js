@@ -1,18 +1,51 @@
+/**
+ * @fileoverview Chat Web Component with Progressive Enhancement
+ * Web component implementation without shadow DOM, progressively enhancing existing HTML
+ * @author Jenner Dulce
+ * @version 1.0.0
+ */
+
+/**
+ * SimpleChat Web Component
+ * A custom HTML element that progressively enhances an existing chat interface
+ * Works with light DOM for better CSS integration and accessibility
+ * @extends HTMLElement
+ */
 class SimpleChat extends HTMLElement {
+    /**
+     * Creates an instance of SimpleChat
+     * Initializes debug settings without shadow DOM for progressive enhancement
+     */
     constructor() {
         super();
+        /** @type {boolean} Debug flag for console logging */
         this.DEBUG = false;
     }
 
+    /**
+     * Called when the element is inserted into the DOM
+     * Progressively enhances existing HTML with interactive functionality
+     * @returns {void}
+     */
     connectedCallback() {
         this.updateSendButtonState();
         this.setupEventListeners();
     }
 
+    /**
+     * Logs messages to console when DEBUG is enabled
+     * @param {string} msg - The message to log
+     * @returns {void}
+     */
     log(msg) {
         if (this.DEBUG) console.log(msg);
     }
 
+    /**
+     * Processes and validates user input message
+     * @param {string} msg - Raw user input message
+     * @returns {string|boolean} Processed message if valid, false if invalid
+     */
     processUserMessage(msg) {
         this.log("Processing user message...");
         let processedUserMessage = msg.trim();
@@ -25,6 +58,12 @@ class SimpleChat extends HTMLElement {
         }
     }
 
+    /**
+     * Updates the send button's visual state based on input content
+     * Adds 'hasContent' class when input has text, removes when empty
+     * Uses light DOM for better CSS integration
+     * @returns {void}
+     */
     updateSendButtonState() {
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
@@ -42,6 +81,11 @@ class SimpleChat extends HTMLElement {
         }
     }
 
+    /**
+     * Sets up event listeners for user interactions
+     * Progressively enhances existing HTML elements with interactive behavior
+     * @returns {void}
+     */
     setupEventListeners() {
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
@@ -71,6 +115,13 @@ class SimpleChat extends HTMLElement {
         });
     }
 
+    /**
+     * Appends a new message to the chat container
+     * Creates and styles message elements in the light DOM
+     * @param {string} message - The message content to display
+     * @param {'user'|'bot'} sender - The type of sender (user or bot)
+     * @returns {void}
+     */
     appendMessageToChat(message, sender) {
         const messageContainer = document.getElementById('message-container');
 
@@ -93,6 +144,16 @@ class SimpleChat extends HTMLElement {
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
+    /**
+     * Generates a bot response using Eliza-style pattern matching
+     * 
+     * This method implements a simple pattern matching system similar to the famous ELIZA chatbot.
+     * It matches user input against predefined patterns and returns appropriate responses.
+     * Includes support for captured groups in patterns (e.g., "I am happy" -> "Why do you think you are happy?").
+     * 
+     * @param {string} message - The user's input message to generate a response for
+     * @returns {string} A contextually appropriate bot response based on pattern matching
+     */
     getBotResponse(message) {
         /**
          * Eliza-style Pattern Matching Module
@@ -252,4 +313,12 @@ class SimpleChat extends HTMLElement {
     }
 }
 
+/**
+ * Register the SimpleChat component as a custom element
+ * 
+ * This registration makes the <simple-chat> tag available for use in HTML.
+ * The component will automatically instantiate and initialize when the tag is encountered.
+ * 
+ * @see {@link SimpleChat} - The class that implements the custom element behavior
+ */
 customElements.define('simple-chat', SimpleChat);

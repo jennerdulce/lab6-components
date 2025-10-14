@@ -1,13 +1,39 @@
+/**
+ * @fileoverview Chat application with DOM manipulation
+ * Interactive chat interface using vanilla JavaScript and DOM manipulation
+ * @author Jenner Dulce
+ * @version 1.0.0
+ */
+
 import { getBotResponse } from '../Eliza.js';
+
+/** @constant {boolean} DEBUG - Flag to enable/disable debug logging */
 const DEBUG = true;
+
+/** @type {HTMLElement} Message container element */
 let messageContainer = document.getElementById('message-container');
+
+/** @type {HTMLTextAreaElement} User input textarea element */
 let userInput = document.getElementById('user-input');
+
+/** @type {HTMLButtonElement} Send button element */
 let sendBtn = document.getElementById('send-btn');
 
+/**
+ * Logs messages to console when DEBUG is enabled
+ * @param {string} msg - The message to log
+ * @returns {void}
+ */
 function log(msg) {
     if (DEBUG) console.log(msg);
 }
 
+/**
+ * Appends a new message to the chat container
+ * @param {string} message - The message content to display
+ * @param {'user'|'bot'} sender - The type of sender (user or bot)
+ * @returns {void}
+ */
 function appendMessageToChat(message, sender) {
     log("Appending Message to Chatbox")
     let newMessageElement = document.createElement('li');
@@ -26,6 +52,11 @@ function appendMessageToChat(message, sender) {
     messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
+/**
+ * Processes and validates user input message
+ * @param {string} msg - Raw user input message
+ * @returns {string|boolean} Processed message if valid, false if invalid
+ */
 function processUserMessage(msg) {
     log("Processing user message...");
     let processedUserMessage = msg.trim();
@@ -38,7 +69,11 @@ function processUserMessage(msg) {
     }
 }
 
-// Function to check input and update button state
+/**
+ * Updates the send button's visual state based on input content
+ * Adds 'hasContent' class when input has text, removes when empty
+ * @returns {void}
+ */
 function updateSendButtonState() {
     if (userInput.value.trim() !== '') {
         if (!sendBtn.classList.contains('hasContent')) {
@@ -53,6 +88,11 @@ function updateSendButtonState() {
     }
 }
 
+/**
+ * Initializes the chat application
+ * Sets up event listeners and initial state
+ * @returns {void}
+ */
 function init() {
     log("Loading app...");
     updateSendButtonState();
@@ -82,4 +122,8 @@ function init() {
     });
 }
 
+/**
+ * Event listener for DOM content loaded
+ * Initializes the application when the DOM is fully parsed
+ */
 window.addEventListener('DOMContentLoaded', init);

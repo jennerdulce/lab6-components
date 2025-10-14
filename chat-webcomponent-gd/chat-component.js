@@ -1,20 +1,55 @@
+/**
+ * @fileoverview Chat Web Component with Graceful Degradation
+ * Advanced web component implementation with shadow DOM and graceful degradation support
+ * @author Jenner Dulce
+ * @version 1.0.0
+ */
+
+/**
+ * ChatInterface Web Component
+ * A custom HTML element that provides an interactive chat interface
+ * with shadow DOM encapsulation and graceful degradation
+ * @extends HTMLElement
+ */
 class ChatInterface extends HTMLElement {
+    /**
+     * Creates an instance of ChatInterface
+     * Initializes shadow DOM and debug settings
+     */
     constructor() {
         super();
+        /** @type {ShadowRoot} Shadow DOM root for encapsulation */
         this.attachShadow({ mode: 'open' });
+
+        /** @type {boolean} Debug flag for console logging */
         this.DEBUG = false;
     }
 
+    /**
+     * Called when the element is inserted into the DOM
+     * Initializes the component's render, state, and event listeners
+     * @returns {void}
+     */
     connectedCallback() {
         this.render();
         this.updateSendButtonState();
         this.setupEventListeners();
     }
 
+    /**
+     * Logs messages to console when DEBUG is enabled
+     * @param {string} msg - The message to log
+     * @returns {void}
+     */
     log(msg) {
         if (this.DEBUG) console.log(msg);
     }
 
+    /**
+     * Processes and validates user input message
+     * @param {string} msg - Raw user input message
+     * @returns {string|boolean} Processed message if valid, false if invalid
+     */
     processUserMessage(msg) {
         this.log("Processing user message...");
         let processedUserMessage = msg.trim();
@@ -27,6 +62,11 @@ class ChatInterface extends HTMLElement {
         }
     }
 
+    /**
+     * Updates the send button's visual state based on input content
+     * Adds 'hasContent' class when input has text, removes when empty
+     * @returns {void}
+     */
     updateSendButtonState() {
         const userInput = this.shadowRoot.getElementById('user-input');
         const sendBtn = this.shadowRoot.getElementById('send-btn');
@@ -44,6 +84,11 @@ class ChatInterface extends HTMLElement {
         }
     }
 
+    /**
+     * Sets up event listeners for user interactions
+     * Configures click, input, and keyboard event handlers
+     * @returns {void}
+     */
     setupEventListeners() {
         // Select from DOM
         const userInput = this.shadowRoot.getElementById('user-input');
@@ -74,6 +119,13 @@ class ChatInterface extends HTMLElement {
         });
     }
 
+    /**
+     * Appends a new message to the chat container
+     * Creates and styles message elements, generates bot responses
+     * @param {string} message - The message content to display
+     * @param {'user'|'bot'} sender - The type of sender (user or bot)
+     * @returns {void}
+     */
     appendMessageToChat(message, sender) {
         const messageContainer = this.shadowRoot.getElementById('message-container');
 
@@ -96,6 +148,11 @@ class ChatInterface extends HTMLElement {
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 
+    /**
+     * Renders the component's HTML structure and styles
+     * Sets up the shadow DOM with CSS imports and chat interface
+     * @returns {void}
+     */
     render() {
         this.shadowRoot.innerHTML = `
             <style>
@@ -130,6 +187,12 @@ class ChatInterface extends HTMLElement {
         `;
     }
 
+    /**
+     * Generates bot responses using Eliza-style pattern matching
+     * Analyzes user input and returns contextual responses based on predefined patterns
+     * @param {string} message - The user's message to analyze
+     * @returns {string} Generated bot response based on pattern matching
+     */
     getBotResponse(message) {
         /**
          * Eliza-style Pattern Matching Module
@@ -289,4 +352,9 @@ class ChatInterface extends HTMLElement {
     }
 }
 
+/**
+ * Register the ChatInterface as a custom HTML element
+ * Allows usage as <simple-chat></simple-chat> in HTML
+ * @type {void}
+ */
 customElements.define('simple-chat', ChatInterface);
