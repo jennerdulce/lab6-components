@@ -370,3 +370,7 @@ chat-[approach]/
 
 ### Project Summary
 *This project demonstrates the evolution of web development techniques from static prototypes to modern component-based architectures. Each implementation teaches different aspects of web development, from fundamental HTML/CSS to cutting-edge Web Components APIs. The progression shows how the same user interface can be built using increasingly sophisticated techniques, each with their own trade-offs in complexity, maintainability, and functionality.* 
+
+### Reflection
+
+I found this project very enjoyable and engaging. Time flew by while coding and listening to lofi music, creating an immersive development experience. The workflow felt intuitive and smooth when refactoring and tackling each approach. The assignment was perfectly structured, building upon concepts while diving deeper into the fundamentals and enhancing understanding of the topics.
