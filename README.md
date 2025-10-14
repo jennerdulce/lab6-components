@@ -1,5 +1,7 @@
 # Lab 6: Chat Interface Components
 
+[Lab 6: Components by Jenner Dulce](https://jennerdulce.github.io/lab6-components/)
+
 ## Overview
 This project demonstrates building the same chat interface using four different web development approaches, showcasing the evolution from static HTML/CSS to modern web components. Each implementation features a functional Eliza-style chatbot with pattern matching responses.
 
