@@ -366,7 +366,7 @@ chat-[approach]/
 
 ## Author
 **Jenner Dulce** - COMP 305 Individual Lab 6  
-*October 2024*
+*October 2025*
 
 ---
 
